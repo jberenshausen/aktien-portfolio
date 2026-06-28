@@ -8,6 +8,7 @@ Ein einfaches Kommandozeilenprogramm zur Verwaltung eines persönlichen Aktienpo
 - **Portfolio anzeigen** – alle Positionen übersichtlich als Tabelle ausgeben
 - **Gesamtwert berechnen** – Wert jeder Position und die Portfolio-Summe auf Basis der Kaufkurse
 - **Aktie löschen** – einzelne Positionen entfernen
+- **Portfolio sortieren** - Portfolio sortieren nach Name, Kürzel und Wert" 
 - **Daten speichern & laden** – als JSON oder CSV, automatisches Laden beim Programmstart
 
 ## Voraussetzungen
