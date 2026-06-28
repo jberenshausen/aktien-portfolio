@@ -41,8 +41,9 @@ Das Programm läuft im Terminal und zeigt ein Menü mit nummerierten Optionen:
 ║  [2]  Portfolio anzeigen             ║
 ║  [3]  Gesamtwert berechnen           ║
 ║  [4]  Aktie löschen                  ║
-║  [5]  Portfolio speichern            ║
-║  [6]  Portfolio laden                ║
+║  [5]  Portfolio sortieren            ║
+║  [6]  Portfolio speichern            ║
+║  [7]  Portfolio laden                ║
 ║  [0]  Beenden                        ║
 ╚══════════════════════════════════════╝
 ```
