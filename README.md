@@ -1,32 +1,39 @@
 # Aktien-Portfolio-Manager
 
-Ein einfaches Kommandozeilenprogramm zur Verwaltung eines persönlichen Aktienportfolios.
+Ein einfaches Kommandozeilenprogramm zur Verwaltung eines persönlichen Aktienportfolios — mit Abruf aktueller Börsenkurse über [yfinance](https://pypi.org/project/yfinance/).
 
 ## Was das Programm macht
 
-- **Aktien hinzufügen** – Name, Börsenkürzel, Stückzahl und Kaufkurs erfassen
-- **Portfolio anzeigen** – alle Positionen übersichtlich als Tabelle ausgeben
-- **Gesamtwert berechnen** – Wert jeder Position und die Portfolio-Summe auf Basis der Kaufkurse
-- **Aktie löschen** – einzelne Positionen entfernen
-- **Portfolio sortieren** - Portfolio sortieren nach Name, Kürzel und Wert" 
-- **Daten speichern & laden** – als JSON oder CSV, automatisches Laden beim Programmstart
+- **Aktie hinzufügen** – Name, Börsenkürzel, Kaufkurs und Stückzahl erfassen
+- **Depot anzeigen** – alle erfassten Positionen ausgeben
+- **Momentaner Depotwert** – ruft für jede Position den aktuellen Kurs ab und rechnet den Depotwert live aus
+- **Gesamtwert berechnen** – Portfolio-Summe auf Basis der eingetragenen Kaufkurse
+- **Gewinn berechnen** – Vergleich von Kaufkurs und aktuellem Kurs in Prozent
+- **Depot löschen** – Portfolio zurücksetzen
+- **Speichern & Laden** – als `portfolio.json`, automatisches Laden beim Programmstart und automatisches Speichern beim Beenden
 
 ## Voraussetzungen
 
 - Python 3.8 oder neuer
-- Keine externen Bibliotheken nötig (nur Python-Standardbibliothek)
+- Die Bibliothek `yfinance` (für den Abruf der aktuellen Kurse)
+
+```
+pip install yfinance
+```
 
 Python herunterladen: https://www.python.org/downloads/
 
+Für die Kursabfrage wird eine Internetverbindung benötigt. Alle anderen Funktionen laufen offline.
+
 ## Programm starten
 
-```bash
+```
 python portfolio.py
 ```
 
 Oder unter Linux/macOS:
 
-```bash
+```
 python3 portfolio.py
 ```
 
@@ -35,31 +42,30 @@ python3 portfolio.py
 Das Programm läuft im Terminal und zeigt ein Menü mit nummerierten Optionen:
 
 ```
-╔══════════════════════════════════════╗
-║      Aktien-Portfolio-Manager        ║
-╠══════════════════════════════════════╣
-║  [1]  Aktie hinzufügen               ║
-║  [2]  Portfolio anzeigen             ║
-║  [3]  Gesamtwert berechnen           ║
-║  [4]  Aktie löschen                  ║
-║  [5]  Portfolio sortieren            ║
-║  [6]  Portfolio speichern            ║
-║  [7]  Portfolio laden                ║
-║  [0]  Beenden                        ║
-╚══════════════════════════════════════╝
+ Hauptmenü
+1. Aktie hinzufügen
+2. Depot anzeigen
+3. Momentaner Depotwert
+4. Gesamtwert berechnen
+5. Gewinn berechnen
+6. Depot löschen
+9. Speichern
+0. Beenden
 ```
 
-Beim Beenden wird das Portfolio automatisch als `portfolio.json` gespeichert und beim nächsten Start automatisch geladen.
+Beim Start wird ein vorhandenes `portfolio.json` automatisch geladen, beim Beenden über `0` wird automatisch gespeichert.
+
+Das Börsenkürzel (Ticker) muss dem Yahoo-Finance-Format entsprechen, zum Beispiel `AAPL` für Apple oder `SAP.DE` für SAP an der Frankfurter Börse. Kurse werden in US-Dollar ausgegeben.
 
 ## Dateistruktur
 
 ```
 portfolio.py       ← Hauptprogramm
 portfolio.json     ← gespeichertes Portfolio (wird automatisch erstellt)
-portfolio.csv      ← CSV-Export (optional)
 ```
 
 ## Verwendete Technologien
 
 - **Sprache:** Python 3
-- **Module:** `json`, `csv`, `os`, `datetime` (alle in der Standardbibliothek enthalten)
+- **Standardbibliothek:** `json`, `os`
+- **Extern:** `yfinance` (Kursdaten von Yahoo Finance)
