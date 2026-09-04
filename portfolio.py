@@ -63,12 +63,10 @@ def depot_loeschen():
      print("Portfolio wurde gelöscht")
 
 def differenz_berechnen():
-    print("Diffenrenz wird berechnet...")
-    summe = 0.0
-    gesamt = 0.0
-    for aktie in portfolio:
-            wert = aktie["Stück"] * aktie["Kurs"]
-            summe += wert
+    print("Differenz wird berechnet...")
+    einstand = 0.0
+    aktuell = 0.0
+    fehlende = []
 
     for aktie in portfolio:
         kuerzel = aktie["Kürzel"]
@@ -76,15 +74,29 @@ def differenz_berechnen():
         kurs = aktie["Kurs"]
 
         try:
-             daten = yfinance.Ticker(kuerzel)
-             kurs_aktuell = daten.fast_info["last_price"]
-             wert = (kurs_aktuell - kurs)/kurs*100
-             gesamt = gesamt + wert
-
-             print("Gewinn beträgt: ", str(round(gesamt, 2)), " %")
-
+            daten = yfinance.Ticker(kuerzel)
+            kurs_aktuell = daten.fast_info["last_price"]
         except Exception:
-                print(kuerzel + ": Kurs konnte nicht abgerufen werden.")
+            fehlende.append(kuerzel)
+        continue
+
+        einstand = einstand + kurs * stueck
+        aktuell = aktuell + kurs_aktuell * stueck
+
+        veraenderung = (kurs_aktuell - kurs) / kurs * 100
+        print(kuerzel + ": " + str(round(veraenderung, 2)) + " %")
+
+    if fehlende:
+        print("Kein Kurs abrufbar für: " + ", ".join(fehlende))
+
+    if einstand == 0:
+        print("Kein Gewinn berechenbar (Depot leer oder keine Kurse).")
+        return
+    
+    gewinn = aktuell - einstand
+    prozent = gewinn / einstand * 100
+
+    print("Gesamt: " + str(round(gewinn, 2)) + " $ (" + str(round(prozent, 2)) + " %)")
 
 laden()
 
