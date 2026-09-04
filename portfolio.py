@@ -118,7 +118,7 @@ while True:
         aktie_hinzufuegen(portfolio),
     elif wahl == '2':
         if portfolio == []: print("Portfolio ist leer")
-        else: print(portfolio),
+        else: depot_anzeigen(portfolio),
     elif wahl == '3':
         aktueller_depotwert(),
     elif wahl == '4':
