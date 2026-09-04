@@ -78,7 +78,7 @@ def differenz_berechnen():
             kurs_aktuell = daten.fast_info["last_price"]
         except Exception:
             fehlende.append(kuerzel)
-        continue
+            continue
 
         einstand = einstand + kurs * stueck
         aktuell = aktuell + kurs_aktuell * stueck
